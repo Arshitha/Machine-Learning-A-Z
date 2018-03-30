@@ -49,8 +49,23 @@ X[:,0]=labelencoder_X.fit_transform(X[:,0])
 # we'll create 3 separate columns, one for each country instead of the one comprehensive 
 onehotencoder = OneHotEncoder(categorical_features=[0])
 X = onehotencoder.fit_transform(X).toarray()
-print(X)
+#print(X)
 
+# now while encoding th purchased variable we don't have to perform one hot encoding
+# since purchased is a dependent variable it would be understood that it's categorical and 
+# that there's no order among them
+
+labelencoder_y = LabelEncoder()
+y = labelencoder_y.fit_transform(y)
+#print(y)
+
+
+# splitting dataset into training set and test set
+from sklearn.cross_validation import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, random_state = 4)
+
+#print(X_train, y_train, X_test, y_test)
 
 
 
