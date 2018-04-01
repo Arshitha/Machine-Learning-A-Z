@@ -67,6 +67,21 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, random
 
 #print(X_train, y_train, X_test, y_test)
 
+# Feature scaling
+# a lot depends on euclidean distance of observations in machine learning algorithms
+# so here salary has a wider range of values and therefore it'd be more dominant
+
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+# test set is only transformed but training set is fit and then transformed. why?
+X_test = sc_X.transform(X_test)
+
+# do we need to fit and transform dummy variables? 
+# it depends on context 
+
+print(X_train)
+
 
 
 
