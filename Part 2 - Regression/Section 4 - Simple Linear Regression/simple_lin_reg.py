@@ -33,3 +33,36 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=1/3, random_s
 # along the course. 
 
 # STEP 2
+# sklearn library will be used
+# linear regression class will be used
+# object of the class is called regressor
+# regressor object will be fit to the dataset
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+
+# based on the training data the regressor object will be fit
+# learns the corelations between salary and experience
+regressor.fit(X_train, y_train)
+print("here")
+
+# STEP 3
+# predictions on the test set based on training in the prev set
+y_pred = regressor.predict(X_test)
+print(y_test, y_pred)
+
+# STEP 4: 
+# visualizing training set results
+plt.scatter(X_train, y_train, color= "red")
+plt.plot(X_train, regressor.predict(X_train), color = "blue")
+plt.title("Salary vs Experience (Training set)")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
+plt.show()
+
+plt.scatter(X_test, y_test, color= "red")
+plt.plot(X_train, regressor.predict(X_train), color = "blue")
+plt.title("Salary vs Experience (Test set)")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
+plt.show()
+
