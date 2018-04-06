@@ -50,5 +50,23 @@ labelencoder_X = LabelEncoder()
 X[:,3] = labelencoder_X.fit_transform(X[:,3])
 onehotencoder = OneHotEncoder(categorical_features=[3])
 X = onehotencoder.fit_transform(X).toarray()
-#from sklearn.cross_validation import train_test_split
-print(X)
+
+# avoiding the dummy variable trap
+#X = X[:,1:]
+
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=4)
+#print(X_test, y_test)
+# feature scaling taken care of by the library itself
+
+# Fitting multiple linear regression to the training set
+
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression() # created an object of the class linear regression
+regressor.fit(X_train, y_train)
+
+# prediction on test set
+y_pred = regressor.predict(X_test)
+print(y_pred)
+
+
