@@ -56,7 +56,7 @@ X = onehotencoder.fit_transform(X).toarray()
 
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=4)
-#print(X_test, y_test)
+# print(X_test, y_test)
 # feature scaling taken care of by the library itself
 
 # Fitting multiple linear regression to the training set
@@ -67,6 +67,25 @@ regressor.fit(X_train, y_train)
 
 # prediction on test set
 y_pred = regressor.predict(X_test)
-print(y_pred)
+#print(y_pred)
+
+# some of the independent variables in the dataset could have higher statistical 
+# significance than the other independent variables on the dependent variable.
+# If non-statistically significant variables are removed, then we'd have a 
+# team of independent variables that are highly effective in predicting output 
+# labels
+
+# backward elimination preparation
+import statsmodels.formula.api as sm 
+X = np.append(arr = np.ones((50,1)).astype(int), values=X,axis=1)
+#print(X)
+
+X_opt = X[:, [0,1,2,3,4,5]] 
+# since for back elimination we are using a different lib we won't be using 
+# the regressor model. Instead, we'd be using a new regressor ( basically, multiple reg model)
+# but it'll be using the statsmodels lib ratger than linear regression lib
+# ols = ordinary least squares
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+
 
 
