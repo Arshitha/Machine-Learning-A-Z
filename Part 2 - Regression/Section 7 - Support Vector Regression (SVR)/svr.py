@@ -31,12 +31,12 @@ y_pred = regressor.predict(6.5)
 y_pred = sc_y.inverse_transform(y_pred)
 
 # Visualising the SVR results
-plt.scatter(X, y, color = 'red')
-plt.plot(X, regressor.predict(X), color = 'blue')
-plt.title('Truth or Bluff (SVR)')
-plt.xlabel('Position level')
-plt.ylabel('Salary')
-plt.show()
+# plt.scatter(X, y, color = 'red')
+# plt.plot(X, regressor.predict(X), color = 'blue')
+# plt.title('Truth or Bluff (SVR)')
+# plt.xlabel('Position level')
+# plt.ylabel('Salary')
+# plt.show()
 
 # Visualising the SVR results (for higher resolution and smoother curve)
 X_grid = np.arange(min(X), max(X), 0.01) # choice of 0.01 instead of 0.1 step because the data is feature scaled
