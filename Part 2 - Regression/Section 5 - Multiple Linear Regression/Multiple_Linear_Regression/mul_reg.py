@@ -52,10 +52,10 @@ onehotencoder = OneHotEncoder(categorical_features=[3])
 X = onehotencoder.fit_transform(X).toarray()
 
 # avoiding the dummy variable trap
-#X = X[:,1:]
+X = X[:,1:]
 
 from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=4)
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=345)
 # print(X_test, y_test)
 # feature scaling taken care of by the library itself
 
@@ -86,6 +86,26 @@ X_opt = X[:, [0,1,2,3,4,5]]
 # but it'll be using the statsmodels lib ratger than linear regression lib
 # ols = ordinary least squares
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+# the summary function 
+
+X_opt = X[:, [0,1,3,4,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X[:, [0,3,4,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X[:, [0,3,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X[:, [0,3]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+
 
 
 
